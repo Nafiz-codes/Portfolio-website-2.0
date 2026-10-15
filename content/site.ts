@@ -106,7 +106,7 @@ export const site = {
 
   /** Put a photo in /public (about 800×1000 px, JPG or WebP) and set src to e.g. "/portrait.jpg". Empty shows a placeholder frame. */
   portrait: {
-    src: "",
+    src: "/portrait.jpg",
     alt: "Portrait of Nafiz Shahriar Sami",
   },
 

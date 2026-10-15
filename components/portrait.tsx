@@ -30,7 +30,7 @@ export function Portrait() {
             fill
             priority
             sizes="(min-width: 1024px) 22vw, 15rem"
-            className="object-cover grayscale-[15%]"
+            className="object-cover object-[center_18%]"
           />
         ) : (
           <div
