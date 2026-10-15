@@ -4,12 +4,7 @@ Personal portfolio built with Next.js (App Router), TypeScript, and Tailwind CSS
 
 ## Run it
 
-```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build    # static export into ./out
-npm run lint
-```
+link: https://nafiz-shahriar.vercel.app/
 
 Preview the production export locally with any static server, for example `npx serve out`.
 
