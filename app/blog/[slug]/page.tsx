@@ -1,0 +1,8 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { posts } from "@/content/studio";
+import { pageMetadata } from "@/lib/metadata";
+export const dynamicParams = false;
+export function generateStaticParams() { return posts.map(p => ({ slug: p.slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; const post = posts.find(p => p.slug === slug); return post ? pageMetadata({ title: post.title, description: post.excerpt, path: `/blog/${slug}` }) : {}; }
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; const post = posts.find(p => p.slug === slug); if (!post) notFound(); return <article className="container-page studio-section notebook-page"><Link href="/blog" className="text-link">← All field notes</Link><p className="label">{post.category} / {post.body?.length ? post.status : "Planned entry"}</p><h1 className="page-display">{post.title}<span>.</span></h1><p className="section-description">{post.excerpt}</p>{post.body?.length ? <div className="article-body">{post.body.map(section => <section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</section>)}</div> : <div className="notebook-notice"><span className="label">Still taking shape</span><h2>Good thoughts take time.</h2><p>This is a preview of a planned topic, not a published article. Check back for the complete entry.</p><Link href={post.project} className="text-link">Explore the related work ↗</Link></div>}</article> }

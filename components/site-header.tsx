@@ -12,7 +12,7 @@ export function SiteHeader() {
           className="group inline-flex min-h-11 items-center gap-3 whitespace-nowrap font-display text-[0.875rem] font-medium text-fg sm:text-[0.9375rem]"
         >
           <span aria-hidden="true" className="size-2.5 bg-accent transition-transform group-hover:rotate-45" />
-          {site.person.name}
+          {site.person.shortName}<span className="text-accent">.</span>
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
           <DesktopNav />

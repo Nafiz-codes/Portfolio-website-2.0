@@ -10,10 +10,10 @@ Preview the production export locally with any static server, for example `npx s
 
 ## Update the content
 
-All copy lives in [`content/site.ts`](content/site.ts). Components only read from it.
+Profile and project copy lives in [`content/site.ts`](content/site.ts). Studio gallery and journal content lives in `content/studio.ts`.
 
 - **Placeholders** are strings that start with `[TODO: …]`. They render as a dashed marker on the site and are never turned into links. Search the file for `[TODO` to find what's left.
-- **Projects**: edit or add an entry in `projects`. The `slug` becomes the URL (`/projects/<slug>`), `featured: true` puts it on the home page, and order in the array is display order. A case study page, sitemap entry, and Open Graph image are generated automatically.
+- **Projects**: edit or add an entry in `projects`. The `slug` becomes the URL (`/projects/<slug>`), homepage selections are configured by slug in `app/page.tsx`. A case study page, sitemap entry, and Open Graph image are generated automatically.
 - **Links**: set `links.demo` / `links.code` to a real URL. Card links appear only for real URLs.
 - **Screenshots**: put an image in `public/` and add `image: { src, alt, width, height }` to a project. It replaces the vector illustration on the card and case study.
 - **Resume**: drop the PDF in `public/` and set `resumePdf` to its path (for example `"/nafiz-shahriar-sami-resume.pdf"`). The "Download resume" buttons appear automatically.
@@ -25,4 +25,14 @@ Import the repository in Vercel. The framework is detected as Next.js and the st
 ## Design notes
 
 - Tokens (colours, fonts) are CSS variables in `app/globals.css`. Dark is the default; the toggle stores the choice in `localStorage`.
-- The only animation is the airflow figure in the hero. It has a pause button and stops under `prefers-reduced-motion`.
+- The hero features a gently animated orbital sculpture; reduced-motion preferences disable animation.
+
+## Studio redesign
+
+The homepage now combines selected work, recognition, an artwork gallery, a journal, and an about section. Its orbital sculpture and sample artwork are CSS illustrations, with reduced-motion support.
+
+- Edit gallery and journal entries in `content/studio.ts`.
+- For artwork, put an image in `public/art/`, set the entry's `src` to `/art/filename.jpg`, update its title/category/description, and set `sample: false`. Category filters are generated automatically. The supplied abstract images are explicitly labeled design samples.
+- Journal entries currently preview planned topics. To publish an entry, add `body: [{ heading: "Your section heading", paragraphs: ["Your text"] }]` and set `status` to a publication label such as `October 30, 2026`. The full article then replaces the preview notice, and the entry is included in the sitemap. Rebuild after editing.
+- Homepage project selection is by slug in `app/page.tsx`; all existing projects remain available under `/projects`.
+- Run `npm run dev` for local development and `npm run build` for the static production export. Google Fonts requires network access during the build.

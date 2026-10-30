@@ -1,116 +1,35 @@
 import Link from "next/link";
-import { AirflowFigure } from "@/components/airflow-figure";
-import { ButtonLink } from "@/components/button-link";
-import { ArrowRightIcon } from "@/components/icons";
-import { Portrait } from "@/components/portrait";
+import Image from "next/image";
 import { ScrollCar } from "@/components/scroll-car";
-import { ProjectCard } from "@/components/project-card";
-import { ProofStrip } from "@/components/proof-strip";
-import { SectionHeading } from "@/components/section-heading";
-import { featuredProjects, site } from "@/content/site";
+import { HeroPortrait } from "@/components/hero-portrait";
+import { ProjectVisual } from "@/components/project-visual";
+import { ArtGallery } from "@/components/art-gallery";
+import { Journal } from "@/components/journal";
+import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
-
-export const metadata = pageMetadata({
-  description: site.seo.homeDescription,
-  path: "/",
-  type: "profile",
-});
-
+export const metadata = pageMetadata({ description: site.seo.homeDescription, path: "/", type: "profile" });
 export default function Home() {
-  const { person, about } = site;
-  const [firstName, ...restOfName] = person.name.split(" ");
-
-  return (
-    <>
-      <ScrollCar />
-      <section className="container-page home-gutter pb-20 pt-16 sm:pt-24 lg:pb-28 lg:pt-32">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
-          <div className="lg:col-span-9">
-            <p className="label flex items-center gap-3">
-              <span aria-hidden="true" className="h-px w-8 bg-accent" />
-              {person.descriptor}
-            </p>
-            <h1 className="mt-8 font-semibold leading-[0.92] tracking-[-0.045em] [font-size:clamp(2.75rem,11vw,7rem)] lg:[font-size:min(8vw,7.5rem)]">
-              <span className="block">{firstName}</span>
-              <span className="block">{restOfName.join(" ")}</span>
-            </h1>
-          </div>
-          <div className="w-full max-w-[15rem] lg:col-span-3 lg:max-w-none">
-            <Portrait />
-          </div>
+  const projects = ["racecraft", "uxray", "fair-split"].flatMap(slug => site.projects.filter(project => project.slug === slug));
+  return <>
+    <ScrollCar />
+    <section className="container-page studio-hero">
+      <div className="hero-eyebrow"><span className="label">Builder. Creative. Motorsport mind.</span><span className="label location"><i /> Dhaka, Bangladesh</span></div>
+      <div className="hero-grid personal-hero-grid">
+        <div className="hero-copy">
+          <p className="hero-intro">The person behind the projects <span aria-hidden="true">↗</span></p>
+          <h1 className="personal-name">Nafiz<br /><em>Shahriar</em><br /><span className="accent-word">Sami.</span></h1>
+          <p className="hero-description">I build software, explore AI, and make art. A CSE student at BRAC University, with an eye for design and a mind that’s usually somewhere between a new idea and the next apex.</p>
+          <div className="hero-actions"><Link className="pill-button" href="#work">Explore my work <span>↗</span></Link><Link className="text-link" href="#about">Get to know me <span>↗</span></Link></div>
         </div>
-
-        <div className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5 lg:pt-2">
-            <p className="max-w-[34ch] font-display text-xl leading-snug text-fg sm:text-2xl">
-              {person.headline}
-            </p>
-            <p className="mt-4 max-w-[48ch] text-muted">{person.intro}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/projects">View projects</ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">
-                Contact me
-              </ButtonLink>
-            </div>
-          </div>
-          <div className="lg:col-span-7">
-            <AirflowFigure />
-          </div>
-        </div>
-      </section>
-
-      <div className="home-gutter">
-        <ProofStrip />
+        <HeroPortrait />
       </div>
-
-      <section aria-labelledby="projects-heading" className="container-page home-gutter mt-24 lg:mt-32">
-        <SectionHeading
-          index="01"
-          id="projects-heading"
-          title="Selected projects"
-          action={
-            <Link
-              href="/projects"
-              className="link-underline inline-flex min-h-11 items-center gap-2 text-[0.9375rem] text-muted"
-            >
-              All projects
-              <ArrowRightIcon />
-            </Link>
-          }
-        />
-        <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <li key={project.slug}>
-              <ProjectCard project={project} />
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section aria-labelledby="about" className="container-page home-gutter mt-24 lg:mt-32">
-        <SectionHeading index="02" id="about" title="About" />
-        <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="prose-measure space-y-5 text-[1.0625rem] lg:col-span-7">
-            {about.paragraphs.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-            <p>
-              <Link href="/resume" className="link-underline inline-flex min-h-11 items-center gap-2 text-fg">
-                Education, skills and credentials
-                <ArrowRightIcon />
-              </Link>
-            </p>
-          </div>
-          <dl className="border-t border-line lg:col-span-5">
-            {about.facts.map((fact) => (
-              <div key={fact.label} className="grid gap-1 border-b border-line py-4 sm:grid-cols-[8rem_1fr] sm:gap-4">
-                <dt className="label pt-0.5">{fact.label}</dt>
-                <dd className="text-fg">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-    </>
-  );
+      <div className="hero-bottom"><span className="label">CSE @ BRAC University</span><span className="label">Ossharohi / Aerodynamics</span><a href="#work" className="label">Scroll to explore ↓</a></div>
+    </section>
+    <div className="discipline-strip"><span>Code with purpose</span><b>✳</b><span>Chase the next apex</span><b>✳</b><span>Create without limits</span><b>✳</b><span>Stay curious</span><b>✳</b></div>
+    <section id="work" className="container-page studio-section"><div className="section-top"><div><p className="label">01 / Selected work</p><h2>Ideas, made real<span>.</span></h2></div><Link className="text-link" href="/projects">All projects ↗</Link></div><div className="work-grid">{projects.map((p, i) => <Link href={`/projects/${p.slug}`} className={`work-card work-${i}`} key={p.slug}><div className="work-visual"><div className="work-visual-top"><span>{p.highlight || "Data meets motorsport"}</span><span>0{i + 1} ↗</span></div><ProjectVisual project={p} /><span className="work-watermark">{p.title}</span></div><div className="work-title"><h3>{p.title}</h3><span>↗</span></div><p>{p.summary}</p><div className="project-tags">{p.meta.stack.slice(0, 3).map(t => <span key={t}>{t}</span>)}</div></Link>)}</div></section>
+    <section className="container-page recognition-row" aria-label="Selected achievements">{site.proof.slice(0, 3).map(p => <Link href={p.href!} key={p.label}><strong>{p.value}</strong><span>{p.label}<small>{p.context}</small></span><b>↗</b></Link>)}</section>
+    <section id="art" className="container-page studio-section"><div className="section-top"><div><p className="label">02 / The creative side</p><h2>Beyond the code<span>.</span></h2></div><Link className="text-link" href="/art">Enter the gallery ↗</Link></div><p className="section-description">A space for visual experiments, artwork, and a different kind of problem solving.</p><ArtGallery preview /></section>
+    <section id="writing" className="container-page studio-section"><div className="section-top"><div><p className="label">03 / Field notes</p><h2>Thinking out loud<span>.</span></h2></div><Link className="text-link" href="/blog">The journal ↗</Link></div><Journal /></section>
+    <section id="about" className="container-page studio-section about-studio"><div className="about-photo"><Image src={site.portrait.src} alt={site.portrait.alt} width={600} height={720} /><span className="photo-sticker">Always a work<br />in progress. ↗</span></div><div><p className="label">04 / A little about me</p><h2>More than<br />one dimension<span>.</span></h2><p>{site.about.paragraphs[0]}</p><p>{site.about.paragraphs[1]}</p><Link className="text-link" href="/resume">A closer look at my journey ↗</Link></div></section>
+  </>;
 }
