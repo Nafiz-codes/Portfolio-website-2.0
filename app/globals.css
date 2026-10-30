@@ -1214,3 +1214,19 @@ to {
   .portrait-id { left: 0; right: 0; bottom: 10px; padding: 13px; }
   .portrait-topline { font-size: 8px; }
 }
+
+/* Real artwork from the public art account. */
+.art-card .art-canvas:has(img) { background: #e9e8e1; }
+.art-card .art-canvas img { transition: transform .35s ease; }
+.art-card:hover .art-canvas img { transform: scale(1.04); }
+.art-canvas:has(img) .art-edition { color: #f8f8f2; background: #222b; padding: 7px 10px; }
+.instagram-credit { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); margin-top: 38px; padding-top: 20px; color: var(--muted); font-size: 13px; }
+.art-dialog .text-link { margin-top: 15px; }
+@media (max-width: 767px) { .instagram-credit { align-items: flex-start; flex-direction: column; } }
+.art-card .art-canvas img { object-fit: cover; }
+.art-dialog { width: min(920px, 94vw); max-height: 94dvh; }
+.art-dialog .art-canvas { height: min(72dvh, 760px); background: #171a16; }
+.art-dialog .art-canvas img { object-fit: contain; }
+.art-dialog .art-canvas .art-edition { display: none; }
+.instagram-credit .text-link { gap: 0.35em; }
+@media (max-width: 767px) { .art-dialog .art-canvas { height: min(65dvh, 620px); } }

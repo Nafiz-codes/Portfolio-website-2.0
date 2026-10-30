@@ -1,9 +1,12 @@
-export type Artwork = { id: string; title: string; category: string; description: string; style: string; src?: string; sample: boolean };
-// Replace sample entries with your own artwork. Put images in public/art and set src to /art/filename.jpg.
+export type Artwork = { id: string; title: string; category: string; description: string; style: string; src?: string; sample: boolean; instagramUrl?: string };
+export const artInstagram = "https://www.instagram.com/kt_nafizart/";
+// Selected public posts from @kt_nafizart. Local thumbnails keep the gallery visible without Instagram login.
 export const artworks: Artwork[] = [
-  { id: "orbital", title: "Orbital study", category: "Digital", description: "An exploration of repetition, rhythm, and the space between circles. Illustrative gallery sample, created for this website design.", style: "orbital-art", sample: true },
-  { id: "afterhours", title: "After hours", category: "Abstract", description: "A study in warm light and architectural shadows. Illustrative gallery sample, created for this website design.", style: "sunset-art", sample: true },
-  { id: "signal", title: "Signal / noise", category: "Generative", description: "A structured field interrupted by a single wave. Illustrative gallery sample, created for this website design.", style: "signal-art", sample: true },
+  { id: "character-study", title: "Character study", category: "Digital art", description: "Character illustration from @kt_nafizart, posted March 23, 2026.", style: "", src: "/kt-nafizart-01-full.jpg", sample: false, instagramUrl: "https://www.instagram.com/kt_nafizart/p/DWPIB-akyDD/" },
+  { id: "sword-and-armor", title: "Sword & armor", category: "Digital art", description: "Fantasy character illustration from @kt_nafizart, posted July 14, 2025.", style: "", src: "/kt-nafizart-02-full.jpg", sample: false, instagramUrl: "https://www.instagram.com/kt_nafizart/p/DMGHXHkzV_t/" },
+  { id: "crystal-character", title: "Crystal character", category: "Digital art", description: "Color character illustration from @kt_nafizart, posted April 10, 2025.", style: "", src: "/kt-nafizart-03-full.jpg", sample: false, instagramUrl: "https://www.instagram.com/kt_nafizart/p/DIS4mbfR5vJ/" },
+  { id: "ink-study", title: "Ink study", category: "Traditional", description: "Detailed ink drawing from @kt_nafizart, posted February 11, 2025.", style: "", src: "/kt-nafizart-04-full.jpg", sample: false, instagramUrl: "https://www.instagram.com/kt_nafizart/p/DF8PnhizVi2/" },
+  { id: "graphite-portrait", title: "Graphite portrait", category: "Traditional", description: "Graphite portrait from @kt_nafizart, posted January 26, 2024.", style: "", src: "/kt-nafizart-05-full.jpg", sample: false, instagramUrl: "https://www.instagram.com/kt_nafizart/p/C2kpsnsSVsZ/" },
 ];
 // Drafts are visible as previews but never presented as published articles.
 export type Post = { slug: string; title: string; category: string; excerpt: string; project: string; status: string; body?: { heading: string; paragraphs: string[] }[] };
