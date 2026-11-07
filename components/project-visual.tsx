@@ -192,7 +192,48 @@ function Xray() {
   );
 }
 
+function Forge() {
+  return <g fill="none" strokeWidth={1.5}>
+    <rect x="28" y="28" width="88" height="144" stroke={MUTED} />
+    <path d="M40 51 H102 M40 67 H88 M40 83 H97 M40 99 H72" stroke={MUTED} />
+    <path d="M122 100 H179 M172 94 L179 100 L172 106" stroke={ACCENT} strokeWidth={2} />
+    <rect x="186" y="33" width="106" height="134" stroke={FG} />
+    <path d="M202 142 L222 116 L237 126 L258 76 L278 91" stroke={ACCENT} strokeWidth={2} />
+    <path d="M201 149 H279 M202 52 H273 M202 64 H259" stroke={MUTED} />
+  </g>;
+}
+function Aqua() {
+  return <g fill="none" strokeWidth={1.5}>
+    <path d="M17 120 C70 80 113 152 165 118 S260 85 306 116 M17 137 C70 97 113 169 165 135 S260 102 306 133 M17 154 C70 114 113 186 165 152 S260 119 306 150" stroke={MUTED} />
+    <circle cx="160" cy="92" r="42" stroke={ACCENT} strokeWidth={2} />
+    <path d="M138 93 L154 108 L183 75" stroke={ACCENT} strokeWidth={3} />
+    <circle cx="56" cy="65" r="9" stroke={FG} /><circle cx="263" cy="66" r="9" stroke={FG} />
+    <path d="M56 75 V102 M263 75 V104" stroke={FG} />
+  </g>;
+}
+function Decor() {
+  return <g fill="none" strokeWidth={1.5}>
+    <path d="M40 49 L158 19 L280 49 V150 L158 183 L40 150 Z M40 49 L158 80 L280 49 M158 80 V183" stroke={FG} />
+    <path d="M68 115 L121 100 L153 113 L99 130 Z M68 115 V143 L99 153 V130 M99 153 L153 138 V113" stroke={ACCENT} />
+    <path d="M182 120 L231 107 L257 117 L207 131 Z M182 120 V146 L207 153 V131 M207 153 L257 139 V117" stroke={MUTED} />
+    <circle cx="257" cy="68" r="10" stroke={ACCENT} />
+  </g>;
+}
+function Ghost() {
+  return <g fill="none" strokeWidth={1.5}>
+    <rect x="24" y="32" width="146" height="136" stroke={MUTED} />
+    <path d="M38 57 H95 M38 76 H139 M38 95 H117 M38 114 H147 M38 133 H105" stroke={MUTED} />
+    <path d="M225 45 C194 45 185 74 185 97 V150 L199 140 L212 151 L225 140 L239 151 L253 140 L267 150 V97 C267 65 254 45 225 45 Z" stroke={ACCENT} strokeWidth={2} />
+    <circle cx="213" cy="95" r="4" fill={ACCENT} /><circle cx="239" cy="95" r="4" fill={ACCENT} />
+    <path d="M170 97 H185 M170 116 H185" stroke={FG} />
+  </g>;
+}
+
 const drawings: Record<VisualKind, () => React.JSX.Element> = {
+  forge: Forge,
+  aqua: Aqua,
+  decor: Decor,
+  ghost: Ghost,
   xray: Xray,
   telemetry: Telemetry,
   outpost: Outpost,
@@ -203,6 +244,10 @@ const drawings: Record<VisualKind, () => React.JSX.Element> = {
 };
 
 const descriptions: Record<VisualKind, string> = {
+  forge: "Illustration: raw dataset rows turn into a cleaned chart.",
+  aqua: "Illustration: a stream observation receives an evidence check.",
+  decor: "Illustration: furniture is placed in a three-dimensional room.",
+  ghost: "Illustration: a ghost emerges from a repository history.",
   xray: "Illustration: a messy interface on the left and its repaired version on the right, separated by a scan line.",
   telemetry: "Illustration: two telemetry traces compared over a lap.",
   outpost: "Illustration: a small outpost on a planetary surface, with a row of mission-day markers.",

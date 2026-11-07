@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
 const description =
-  "Projects by Nafiz Shahriar Sami: F1 telemetry analytics, a NASA Space Apps mission game, an AI UI/UX repair agent, group expense splitting, and more.";
+  "Projects by Nafiz Shahriar Sami across AI, data science, software engineering, F1 analytics, and interactive design.";
 
 export const metadata = pageMetadata({ title: "Projects", description, path: "/projects" });
 

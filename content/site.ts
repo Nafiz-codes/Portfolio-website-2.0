@@ -27,7 +27,11 @@ export type ProjectVisual =
   | "split"
   | "timeline"
   | "pipeline"
-  | "xray";
+  | "xray"
+  | "forge"
+  | "aqua"
+  | "decor"
+  | "ghost";
 
 export type Project = {
   slug: string;
@@ -121,6 +125,12 @@ export const site = {
 
   proof: list<ProofItem>([
     {
+      value: "Winner",
+      label: "Ghost in the Repo",
+      context: "Hacktoberfest 2026",
+      href: "/projects/ghost-in-the-repo",
+    },
+    {
       value: "2nd place",
       label: "Fair Split",
       context: "Stripe × Cursor × IBM event, Dhaka",
@@ -187,6 +197,11 @@ export const site = {
   ],
 
   recognition: [
+    {
+      title: "Hacktoberfest 2026 winner",
+      detail: "Built Ghost in the Repo for the Ghost in the Machine challenge.",
+      href: "/projects/ghost-in-the-repo",
+    },
     {
       title: "2nd place: Stripe × Cursor × IBM event, Dhaka",
       detail: "Built Fair Split; received $100 in Cursor credits.",
@@ -289,6 +304,90 @@ export const site = {
   ],
 
   projects: list<Project>([
+    {
+      slug: "ghost-in-the-repo",
+      title: "Ghost in the Repo",
+      summary: "An AI software archaeologist that investigates public repositories and builds evidence-linked revival plans.",
+      status: "built",
+      highlight: "Hacktoberfest 2026 winner",
+      featured: false,
+      visual: "ghost",
+      meta: {
+        role: "Creator",
+        team: "Open-source project",
+        timeline: "Hacktoberfest 2026",
+        stack: ["React 19", "TypeScript", "FastAPI", "Gemma", "SQLite"],
+      },
+      overview: ["Ghost in the Repo analyzes a public GitHub repository's identity, history, and unfinished work to create a prioritized revival blueprint. Built for the Hacktoberfest 2026 Ghost in the Machine challenge."],
+      problem: ["Abandoned repositories contain useful ideas and context, but their history, open issues, and next steps are difficult for a newcomer to reconstruct."],
+      contribution: ["Built an end-to-end repository investigation experience, from URL validation and GitHub preview to evidence-linked reports, a timeline, unfinished-business list, and a revival checklist."],
+      decisions: ["Keep the fictional ghost/lantern example available without a backend, while live investigations use public GitHub data.", "Bound the data collected from commits, issues, pull requests, and source files; state those limits in reports.", "Use a FastAPI backend with a Gemma model for grounded reports and repository questions."],
+      result: ["Hacktoberfest 2026 winner, as reported by the project creator.", "Public repository with a working frontend and investigation backend."],
+      limitations: ["Live analysis requires a configured Gemma API key. The fictional example is a demonstration, not a real repository investigation."],
+      links: { demo: "", code: "https://github.com/Nafiz-codes/Ghost-in-the-Repo" },
+    },
+    {
+      slug: "forgeai",
+      title: "ForgeAI",
+      summary: "A Gemma-powered workspace for profiling, cleaning, and exporting CSV datasets with human review.",
+      status: "built",
+      featured: false,
+      visual: "forge",
+      meta: {
+        role: "Team member",
+        team: "Triarchy",
+        timeline: "Google Gemma 4 Hackathon · 2026",
+        stack: ["Next.js", "TypeScript", "FastAPI", "pandas", "Gemma 4"],
+      },
+      overview: ["ForgeAI helps data scientists and students turn raw CSV files into cleaner datasets. It profiles data, proposes preprocessing actions through Gemma 4, and waits for human approval before execution."],
+      problem: ["Manual dataset cleanup is time-consuming, and blindly applying suggested transformations can hide important decisions."],
+      contribution: ["Helped build a team project spanning dataset profiling, AI recommendations, preprocessing execution, and downloadable reports and pipeline code."],
+      decisions: ["Show a dataset health score and explain proposed actions before execution.", "Keep people in control of which preprocessing steps run.", "Export the cleaned CSV, HTML report, and reusable Python pipeline."],
+      result: ["Built for the Google Gemma 4 Hackathon, with a public repository and frontend demo."],
+      links: { demo: "https://forge-ai-topaz.vercel.app/", code: "https://github.com/Nafiz-codes/ForgeAI" },
+    },
+    {
+      slug: "aquaai",
+      title: "AquaAI",
+      summary: "A citizen-science tool that asks targeted questions and checks evidence quality for urban stream reports.",
+      status: "built",
+      featured: false,
+      visual: "aqua",
+      meta: {
+        role: "Contributor",
+        team: "Three-person team",
+        timeline: "IEEE OneAquaHealth Global Hackathon 2026",
+        stack: ["Python", "FastAPI", "HTML", "JavaScript", "FHIR R4"],
+      },
+      overview: ["AquaAI helps volunteers document urban stream conditions without a long up-front questionnaire. It scores the completeness and consistency of evidence, asks for the most useful missing detail, and routes doubtful observations to experts."],
+      problem: ["Community stream reports can be incomplete or contradictory, making them harder for environmental researchers to evaluate."],
+      contribution: ["Contributed to the team repository for an adaptive citizen and researcher workflow, evidence scoring, review routing, and standardized observation export."],
+      decisions: ["Ask one high-value question at a time rather than presenting every field at once.", "Flag photo and answer conflicts for human review instead of silently replacing the volunteer's observation.", "Export completed observations as HL7 FHIR R4 resources."],
+      result: ["Hackathon prototype with citizen and researcher views and automated tests."],
+      limitations: ["Evidence reliability is not a measure of water purity. Scoring needs calibration against field data."],
+      links: { demo: "", code: "https://github.com/Eusha-Kayenat/AquaAI" },
+    },
+    {
+      slug: "promptdecor",
+      title: "PromptDecor",
+      summary: "A collaborative 3D room designer where people and browser agents arrange catalog furniture together.",
+      status: "built",
+      featured: false,
+      visual: "decor",
+      meta: {
+        role: "Team member",
+        team: "Three-person team",
+        timeline: "WebMCP Challenge · 2026",
+        stack: ["React 19", "Three.js", "React Three Fiber", "Zustand", "WebMCP"],
+      },
+      overview: ["PromptDecor turns interior design into a shared visual workspace. Visitors can place and adjust furniture directly, while supported browser agents use structured tools to inspect the room and make validated changes."],
+      problem: ["Text-only design suggestions are difficult to evaluate spatially and can refer to furniture that is not in the catalog."],
+      contribution: ["Helped build the team project for the WebMCP Challenge, combining an interactive 3D room, catalog, manual controls, and browser-agent tools."],
+      decisions: ["Use exact catalog and scene IDs so agent actions remain grounded.", "Validate room bounds and furniture collisions before placement.", "Keep an offline rule-based assistant and manual controls available when WebMCP is unavailable."],
+      result: ["Live 3D room demo with catalog search, placement, room finishes, and agent tool support."],
+      roadmap: ["Add richer 3D furniture assets and saved layouts."],
+      links: { demo: "https://prompt-decor.vercel.app/", code: "https://github.com/jawadul-codes/PromptDecor" },
+    },
     {
       slug: "racecraft",
       title: "RaceCraft",
